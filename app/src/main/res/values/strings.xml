@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Numbers</string>
+
+    // Main Screen
+    <string name="main_number_trivia">Number Trivia</string>
+    <string name="main_date_trivia">Date Trivia</string>
+    <string name="main_year_trivia">Year Trivia</string>
+    <string name="main_math_facts">Math Facts</string>
+    <string name="number_intro">Introduce a number:</string>
+    <string name="button_go">GO!</string>
+    <string name="date_bt_set">Set the date!</string>
+    <string name="date_selected">Your date is:</string>
+    <string name="you_selected_the_date">You selected the date:</string>
+    <string name="year_intro">Introduce a year:</string>
+    <string name="math_into">Introduce a number:</string>
+</resources>
