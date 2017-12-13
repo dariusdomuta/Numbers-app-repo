@@ -6,6 +6,8 @@ import com.darius.numbers.app.pojos.YearTrivia;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.Path;
 
 /**
@@ -14,6 +16,7 @@ import retrofit2.http.Path;
 
 public interface NumbersApi {
 
+    @Headers("Cache-Control: max-age=640000")
     @GET("/{number}?json")
     Call<NumberTrivia> getNumberTrivia(@Path("number") int number);
 

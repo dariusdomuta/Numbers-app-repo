@@ -56,47 +56,6 @@ public class MainActivity extends AppCompatActivity {
         final NumbersApi numbersApi = NumbersApp.getInstance().getNumbersApi();
 
 
-        Callback<YearTrivia> yearCallback = new Callback<YearTrivia>() {
-            @Override
-            public void onResponse(Call<YearTrivia> call, Response<YearTrivia> response) {
-                if (response.isSuccessful()) {
-                    YearTrivia yearTrivia = response.body();
-
-                    Timber.d("Date is %s, and year trivia is: %s", yearTrivia.getDate(),yearTrivia.getText());
-                } else {
-                   // TODO: handle errors
-                }
-            }
-
-            @Override
-            public void onFailure(Call<YearTrivia> call, Throwable t) {
-                //TODO: handle network errors
-            }
-        };
-
-        Call<YearTrivia> yearTriviaCall = numbersApi.getYearTrivia(1989);
-        yearTriviaCall.enqueue(yearCallback);
-
-        Callback<NumberTrivia> mathCallback = new Callback<NumberTrivia>() {
-            @Override
-            public void onResponse(Call<NumberTrivia> call, Response<NumberTrivia> response) {
-                if(response.isSuccessful()) {
-                    NumberTrivia mathTrivia = response.body();
-                    Timber.d("Math trivia is : %s", mathTrivia.getText());
-                } else {
-                    //TODO: handle errors
-                }
-            }
-
-            @Override
-            public void onFailure(Call<NumberTrivia> call, Throwable t) {
-                    //TODO: handle network errors
-            }
-        };
-
-        Call<NumberTrivia> mathTriviaCall = numbersApi.getMathTrivia(56);
-        mathTriviaCall.enqueue(mathCallback);
-
 
     }
 

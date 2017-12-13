@@ -4,7 +4,9 @@ import android.app.Application;
 
 import com.darius.numbers.BuildConfig;
 import com.darius.numbers.app.network.NumbersApi;
+import com.darius.numbers.utils.LoggingInterceptor;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
@@ -25,14 +27,19 @@ public class NumbersApp extends Application {
 
         Timber.plant(new Timber.DebugTree());
 
-
+        OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
+        okHttpBuilder.addInterceptor(new LoggingInterceptor());
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)
+                .client(okHttpBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         numbersApi = retrofit.create(NumbersApi.class);
+
+
+
     }
 
     public static NumbersApp getInstance() {
