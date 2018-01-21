@@ -37,6 +37,7 @@ public class MathActivity extends AppCompatActivity {
 
     private String resultNumber;
     private String resultTrivia;
+    private String resultType;
     private int numberInput;
 
 
@@ -71,10 +72,12 @@ public class MathActivity extends AppCompatActivity {
 
                         resultNumber = numberTrivia.getNumber().toString();
                         resultTrivia = numberTrivia.getText();
+                        resultType = numberTrivia.getType();
                         Intent intent = new Intent(MathActivity.this, ResultActivity.class);
 
                         intent.putExtra(Constants.K_EXTRA_NUMBER, resultNumber);
                         intent.putExtra(Constants.K_EXTRA_DETAILS, resultTrivia);
+                        intent.putExtra(Constants.K_EXTRA_TYPE, resultType);
 
                         startActivity(intent);
                     } else {

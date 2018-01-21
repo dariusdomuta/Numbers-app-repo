@@ -52,6 +52,7 @@ public class DateActivity extends AppCompatActivity {
     private int selectedDay;
     private String resultDate;
     private String resultDateTrivia;
+    private String resultType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,25 +99,16 @@ public class DateActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     DateTrivia dateTrivia = response.body();
                     Timber.d("Date trivia: %s", dateTrivia.getText());
-                    /*if (selectedMonth>10) {
-                        resultDate = selectedDay + "/" + selectedMonth;
-                    } else {
-                        resultDate = selectedDay + "/0" + selectedMonth;
-                    }
-
-                    resultDateTrivia = dateTrivia.getText();
-                    Intent intent = new Intent(DateActivity.this, ResultActivity.class);
-                    intent.putExtra(MainActivity.EXTRA_DATA_FOR_INTENT, new String[]{resultDate, resultDateTrivia});
-                    startActivity(intent);*/
 
                     Intent intent = new Intent(DateActivity.this, ResultActivity.class);
 
                     resultDate = String.format("%02d %02d", selectedMonth, selectedDay);
                     resultDateTrivia = dateTrivia.getText();
+                    resultType = dateTrivia.getType();
 
                     intent.putExtra(Constants.K_EXTRA_NUMBER, resultDate);
                     intent.putExtra(Constants.K_EXTRA_DETAILS, resultDateTrivia);
-
+                    intent.putExtra(Constants.K_EXTRA_TYPE, resultType);
                     startActivity(intent);
 
                 } else {

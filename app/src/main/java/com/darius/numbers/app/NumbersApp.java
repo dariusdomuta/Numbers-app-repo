@@ -6,6 +6,8 @@ import com.darius.numbers.BuildConfig;
 import com.darius.numbers.app.network.NumbersApi;
 import com.darius.numbers.app.network.interceptors.LoggingInterceptor;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -25,11 +27,15 @@ public class NumbersApp extends Application {
         super.onCreate();
         instance = this;
 
+        //Timber
         Timber.plant(new Timber.DebugTree());
 
+
+        //OkHttpClient
         OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
         okHttpBuilder.addInterceptor(new LoggingInterceptor());
 
+        //Retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)
                 .client(okHttpBuilder.build())
@@ -37,6 +43,16 @@ public class NumbersApp extends Application {
                 .build();
 
         numbersApi = retrofit.create(NumbersApi.class);
+
+        //Realm
+        Realm.init(this);
+
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("facts.realm")
+                .schemaVersion(2)
+                .build();
+        Realm.setDefaultConfiguration(config);
+
 
 
 

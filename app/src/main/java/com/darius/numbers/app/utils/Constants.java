@@ -8,5 +8,6 @@ public interface Constants {
 
     String K_EXTRA_NUMBER = "kExtraNumber";
     String K_EXTRA_DETAILS = "kExtraDetails";
+    String K_EXTRA_TYPE = "kExtraType";
 
 }

@@ -1,5 +1,6 @@
 package com.darius.numbers.screens.number;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ public class NumberActivity extends AppCompatActivity {
     private int numberInput;
     private String resultNumber;
     private String resultTrivia;
+    private String resultType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +73,12 @@ public class NumberActivity extends AppCompatActivity {
 
                         resultNumber = numberTrivia.getNumber().toString();
                         resultTrivia = numberTrivia.getText();
+                        resultType = numberTrivia.getType();
                         Intent intent = new Intent(NumberActivity.this, ResultActivity.class);
 
                         intent.putExtra(Constants.K_EXTRA_NUMBER, resultNumber);
                         intent.putExtra(Constants.K_EXTRA_DETAILS, resultTrivia);
+                        intent.putExtra(Constants.K_EXTRA_TYPE, resultType);
                         startActivity(intent);
                     } else {
                         //TODO: handle error

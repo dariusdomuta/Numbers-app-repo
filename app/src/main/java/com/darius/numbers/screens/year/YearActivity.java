@@ -43,6 +43,7 @@ public class YearActivity extends AppCompatActivity {
     private int yearInput;
     private String resultYear;
     private String resultTrivia;
+    private String resultType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +72,12 @@ public class YearActivity extends AppCompatActivity {
 
                         resultYear = yearTrivia.getNumber().toString();
                         resultTrivia = yearTrivia.getText();
+                        resultType = yearTrivia.getType();
                         Intent intent = new Intent(YearActivity.this, ResultActivity.class);
 
                         intent.putExtra(Constants.K_EXTRA_NUMBER, resultYear);
                         intent.putExtra(Constants.K_EXTRA_DETAILS, resultTrivia);
+                        intent.putExtra(Constants.K_EXTRA_TYPE, resultType);
 
                         startActivity(intent);
                         Timber.d("Date is %s, and year trivia is: %s", yearTrivia.getDate(), yearTrivia.getText());

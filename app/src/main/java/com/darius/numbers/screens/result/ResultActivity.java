@@ -15,8 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.darius.numbers.R;
+import com.darius.numbers.app.RealmDB.StoredDateFact;
+import com.darius.numbers.app.RealmDB.StoredMathFact;
+import com.darius.numbers.app.RealmDB.StoredNumberFact;
+import com.darius.numbers.app.RealmDB.StoredYearFact;
 import com.darius.numbers.app.utils.Constants;
 import com.darius.numbers.screens.main.MainActivity;
+import com.darius.numbers.screens.number.NumberActivity;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -25,11 +30,18 @@ import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
+import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 
 import org.w3c.dom.Text;
 
+import java.util.UUID;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
+import io.realm.exceptions.RealmPrimaryKeyConstraintException;
 import timber.log.Timber;
 
 /**
@@ -50,6 +62,7 @@ public class ResultActivity extends AppCompatActivity {
 
     private String sResultNumber;
     private String sResultInfo;
+    private String sResultType;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
     private Context context;
@@ -81,11 +94,9 @@ public class ResultActivity extends AppCompatActivity {
 
         Intent intent=this.getIntent();
         if (intent != null) {
-            // String[] passedData = intent.getExtras().getStringArray(MainActivity.EXTRA_DATA_FOR_INTENT);
-            // resultNumber.setText(passedData[0]);
-            // resultInfo.setText(passedData[1]);
             sResultNumber = intent.getStringExtra(Constants.K_EXTRA_NUMBER);
             sResultInfo = intent.getStringExtra(Constants.K_EXTRA_DETAILS);
+            sResultType = intent.getStringExtra(Constants.K_EXTRA_TYPE);
 
             resultNumber.setText(sResultNumber);
             resultInfo.setText(sResultInfo);
@@ -102,6 +113,10 @@ public class ResultActivity extends AppCompatActivity {
         resultButtonShare.setShareContent(content);
 
 
+
+
+
+
     }
 
     @Override
@@ -110,10 +125,12 @@ public class ResultActivity extends AppCompatActivity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_share, menu);
+        getMenuInflater().inflate(R.menu.menu_add_to_favourites, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -126,10 +143,70 @@ public class ResultActivity extends AppCompatActivity {
                 intent.setType("text/plain");
                 intent.putExtra(android.content.Intent.EXTRA_TEXT, getsResultInfo() );
                 startActivity(Intent.createChooser(intent, "Share Via"));
+                Toast.makeText(getApplicationContext(), "You click on menu share", Toast.LENGTH_SHORT).show();
                 break;
-        }
 
-        Toast.makeText(getApplicationContext(), "You click on menu share", Toast.LENGTH_SHORT).show();
+            case R.id.menu_add_to_favourites:
+
+                Realm realm = Realm.getDefaultInstance();
+
+                realm.beginTransaction();
+
+                switch (sResultType) {
+                    case "date":
+                        try {
+                            sResultNumber = sResultNumber.replace(" ","");
+                            StoredDateFact date = realm.createObject(StoredDateFact.class, sResultNumber);
+                            date.setStoredDate(Integer.parseInt(sResultNumber));
+                            date.setStoredDateFact(sResultInfo);
+                            Toast.makeText(getApplicationContext(), "Fact added to favourites", Toast.LENGTH_SHORT).show();
+                        } catch (RealmPrimaryKeyConstraintException e) {
+                            Toast.makeText(getApplicationContext(), "Already added to favourites", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
+                    case "math":
+                        try {
+                            final StoredMathFact math = realm.createObject(StoredMathFact.class, sResultNumber);
+                            math.setStoredMath(Integer.parseInt(sResultNumber));
+                            math.setStoredMathFact(sResultInfo);
+                            Toast.makeText(getApplicationContext(), "Fact added to favourites", Toast.LENGTH_SHORT).show();
+                        } catch (RealmPrimaryKeyConstraintException e) {
+                            Toast.makeText(getApplicationContext(), "Already added to favourites", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
+                    case "trivia":
+                        try {
+                            final StoredNumberFact number = realm.createObject(StoredNumberFact.class, sResultNumber);
+                            number.setStoredNumber(Integer.parseInt(sResultNumber));
+                            number.setStoredNumberFact(sResultInfo);
+                            Toast.makeText(getApplicationContext(), "Fact added to favourites", Toast.LENGTH_SHORT).show();
+                        } catch (RealmPrimaryKeyConstraintException e) {
+                            Toast.makeText(getApplicationContext(), "Already added to favourites", Toast.LENGTH_SHORT).show();
+                        }
+
+                        break;
+
+                    case "year":
+                        try{
+                            StoredYearFact year = realm.createObject(StoredYearFact.class, sResultNumber);
+                            year.setStoredYear(Integer.parseInt(sResultNumber));
+                            year.setStoredYearFact(sResultInfo);
+                            Toast.makeText(getApplicationContext(), "Fact added to favourites", Toast.LENGTH_SHORT).show();
+                        } catch (RealmPrimaryKeyConstraintException e) {
+                            Toast.makeText(getApplicationContext(), "Already added to favourites", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                realm.commitTransaction();
+                RealmQuery<StoredNumberFact> query = realm.where(StoredNumberFact.class);
+                RealmResults<StoredNumberFact> result = query.findAll();
+                for (StoredNumberFact iterator : result) {
+                    Timber.d("number fact: "+ iterator.getStoredNumberFact() + iterator.getStoredNumber());
+                }
+
+        }
 
         return super.onOptionsItemSelected(item);
     }

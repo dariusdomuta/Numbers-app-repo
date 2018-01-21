@@ -20,4 +20,5 @@
     //Facebook
     <string name="facebook_app_id">1499880120130275</string>
     <string name="facebook_login_protocol_scheme">fb1499880120130275</string>
+    <string name="add_to_favourites">Add to favourites</string>
 </resources>
