@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.darius.numbers.R;
+import com.darius.numbers.app.utils.Constants;
 import com.darius.numbers.screens.main.MainActivity;
 
 import org.w3c.dom.Text;
@@ -36,10 +37,14 @@ public class ResultActivity extends AppCompatActivity {
 
         Intent intent=this.getIntent();
         if (intent != null) {
-            String[] passedData = intent.getExtras().getStringArray(MainActivity.EXTRA_DATA_FOR_INTENT);
-            resultNumber.setText(passedData[0]);
-            resultInfo.setText(passedData[1]);
+            // String[] passedData = intent.getExtras().getStringArray(MainActivity.EXTRA_DATA_FOR_INTENT);
+            // resultNumber.setText(passedData[0]);
+            // resultInfo.setText(passedData[1]);
+            String sResultNumber = intent.getStringExtra(Constants.K_EXTRA_NUMBER);
+            String sResultInfo = intent.getStringExtra(Constants.K_EXTRA_DETAILS);
 
+            resultNumber.setText(sResultNumber);
+            resultInfo.setText(sResultInfo);
 
         }
     }

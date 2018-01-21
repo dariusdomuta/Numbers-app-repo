@@ -19,11 +19,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.number.NumberActivity"></activity>
-        <activity android:name=".screens.date.DateActivity"></activity>
-        <activity android:name=".screens.year.YearActivity"></activity>
-        <activity android:name=".screens.math.MathActivity"></activity>
-        <activity android:name=".screens.result.ResultActivity"></activity>
+        <activity android:name=".screens.number.NumberActivity">
+        </activity>
+        <activity android:name=".screens.date.DateActivity">
+        </activity>
+        <activity android:name=".screens.year.YearActivity">
+        </activity>
+        <activity android:name=".screens.math.MathActivity">
+        </activity>
+        <activity android:name=".screens.result.ResultActivity">
+        </activity>
 
     </application>
 

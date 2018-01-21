@@ -1,17 +1,13 @@
 package com.darius.numbers.screens.main;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.darius.numbers.R;
 import com.darius.numbers.app.NumbersApp;
 import com.darius.numbers.app.network.NumbersApi;
-import com.darius.numbers.app.pojos.DateTrivia;
-import com.darius.numbers.app.pojos.NumberTrivia;
-import com.darius.numbers.app.pojos.YearTrivia;
 import com.darius.numbers.screens.date.DateActivity;
 import com.darius.numbers.screens.math.MathActivity;
 import com.darius.numbers.screens.number.NumberActivity;
@@ -20,14 +16,10 @@ import com.darius.numbers.screens.year.YearActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String EXTRA_DATA_FOR_INTENT = "Extra data for intent";
+    // public static final String EXTRA_DATA_FOR_INTENT = "Extra data for intent";
 
     @BindView(R.id.main_bt_number_trivia)
     Button btNumberTrivia;

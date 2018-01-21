@@ -12,12 +12,14 @@ import com.darius.numbers.R;
 import com.darius.numbers.app.NumbersApp;
 import com.darius.numbers.app.network.NumbersApi;
 import com.darius.numbers.app.pojos.DateTrivia;
+import com.darius.numbers.app.utils.Constants;
 import com.darius.numbers.screens.main.MainActivity;
 import com.darius.numbers.screens.number.NumberActivity;
 import com.darius.numbers.screens.result.ResultActivity;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -59,9 +61,6 @@ public class DateActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-
-
-
     }
 
     @OnClick(R.id.date_bt_set)
@@ -74,13 +73,12 @@ public class DateActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                String myFormat = "dd MM yy"; // your format
-                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+                DateFormat df = SimpleDateFormat.getDateInstance();
 
                 selectedDay = myCalendar.get(Calendar.DAY_OF_MONTH);
-                selectedMonth = myCalendar.get(Calendar.MONTH) +1 ;
+                selectedMonth = myCalendar.get(Calendar.MONTH) + 1;
 
-                dateSelectedTextView.setText(sdf.format(myCalendar.getTime()));
+                dateSelectedTextView.setText(df.format(myCalendar.getTime()));
             }
 
         };
@@ -100,7 +98,7 @@ public class DateActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     DateTrivia dateTrivia = response.body();
                     Timber.d("Date trivia: %s", dateTrivia.getText());
-                    if (selectedMonth>10) {
+                    /*if (selectedMonth>10) {
                         resultDate = selectedDay + "/" + selectedMonth;
                     } else {
                         resultDate = selectedDay + "/0" + selectedMonth;
@@ -108,8 +106,19 @@ public class DateActivity extends AppCompatActivity {
 
                     resultDateTrivia = dateTrivia.getText();
                     Intent intent = new Intent(DateActivity.this, ResultActivity.class);
-                    intent.putExtra(MainActivity.EXTRA_DATA_FOR_INTENT, new String[] {resultDate, resultDateTrivia});
+                    intent.putExtra(MainActivity.EXTRA_DATA_FOR_INTENT, new String[]{resultDate, resultDateTrivia});
+                    startActivity(intent);*/
+
+                    Intent intent = new Intent(DateActivity.this, ResultActivity.class);
+
+                    resultDate = String.format("%02d %02d", selectedMonth, selectedDay);
+                    resultDateTrivia = dateTrivia.getText();
+
+                    intent.putExtra(Constants.K_EXTRA_NUMBER, resultDate);
+                    intent.putExtra(Constants.K_EXTRA_DETAILS, resultDateTrivia);
+
                     startActivity(intent);
+
                 } else {
                     // TODO: handle errors
                 }

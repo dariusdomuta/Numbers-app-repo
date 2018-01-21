@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.darius.numbers.BuildConfig;
 import com.darius.numbers.app.network.NumbersApi;
-import com.darius.numbers.utils.LoggingInterceptor;
+import com.darius.numbers.app.network.interceptors.LoggingInterceptor;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

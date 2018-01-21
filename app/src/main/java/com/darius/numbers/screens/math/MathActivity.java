@@ -12,7 +12,6 @@ import com.darius.numbers.app.NumbersApp;
 import com.darius.numbers.app.network.NumbersApi;
 import com.darius.numbers.app.pojos.NumberTrivia;
 import com.darius.numbers.screens.main.MainActivity;
-import com.darius.numbers.screens.number.NumberActivity;
 import com.darius.numbers.screens.result.ResultActivity;
 
 import butterknife.BindView;

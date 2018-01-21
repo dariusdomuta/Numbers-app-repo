@@ -1,4 +1,4 @@
-package com.darius.numbers.utils;
+package com.darius.numbers.app.network.interceptors;
 
 import java.io.IOException;
 
