@@ -13,6 +13,7 @@ import com.darius.numbers.app.NumbersApp;
 import com.darius.numbers.app.network.NumbersApi;
 import com.darius.numbers.app.pojos.NumberTrivia;
 import com.darius.numbers.app.pojos.YearTrivia;
+import com.darius.numbers.app.utils.Constants;
 import com.darius.numbers.screens.main.MainActivity;
 import com.darius.numbers.screens.number.NumberActivity;
 import com.darius.numbers.screens.result.ResultActivity;
@@ -71,7 +72,10 @@ public class YearActivity extends AppCompatActivity {
                         resultYear = yearTrivia.getNumber().toString();
                         resultTrivia = yearTrivia.getText();
                         Intent intent = new Intent(YearActivity.this, ResultActivity.class);
-                        intent.putExtra(MainActivity.EXTRA_DATA_FOR_INTENT, new String[]{resultYear, resultTrivia});
+
+                        intent.putExtra(Constants.K_EXTRA_NUMBER, resultYear);
+                        intent.putExtra(Constants.K_EXTRA_DETAILS, resultTrivia);
+
                         startActivity(intent);
                         Timber.d("Date is %s, and year trivia is: %s", yearTrivia.getDate(), yearTrivia.getText());
                     } else {

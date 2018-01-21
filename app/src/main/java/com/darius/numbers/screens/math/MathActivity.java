@@ -11,6 +11,7 @@ import com.darius.numbers.R;
 import com.darius.numbers.app.NumbersApp;
 import com.darius.numbers.app.network.NumbersApi;
 import com.darius.numbers.app.pojos.NumberTrivia;
+import com.darius.numbers.app.utils.Constants;
 import com.darius.numbers.screens.main.MainActivity;
 import com.darius.numbers.screens.result.ResultActivity;
 
@@ -71,7 +72,10 @@ public class MathActivity extends AppCompatActivity {
                         resultNumber = numberTrivia.getNumber().toString();
                         resultTrivia = numberTrivia.getText();
                         Intent intent = new Intent(MathActivity.this, ResultActivity.class);
-                        intent.putExtra(MainActivity.EXTRA_DATA_FOR_INTENT, new String[] {resultNumber, resultTrivia});
+
+                        intent.putExtra(Constants.K_EXTRA_NUMBER, resultNumber);
+                        intent.putExtra(Constants.K_EXTRA_DETAILS, resultTrivia);
+
                         startActivity(intent);
                     } else {
                         //TODO: handle error

@@ -13,4 +13,11 @@
     <string name="you_selected_the_date">You selected the date:</string>
     <string name="year_intro">Introduce a year:</string>
     <string name="math_into">Introduce a number:</string>
+
+    //Result Activity
+    <string name="menu_share">Share</string>
+
+    //Facebook
+    <string name="facebook_app_id">1499880120130275</string>
+    <string name="facebook_login_protocol_scheme">fb1499880120130275</string>
 </resources>

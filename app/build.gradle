@@ -30,6 +30,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
+    //Facebook
+    compile 'com.facebook.android:facebook-share:[4,5)'
+
     // Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.google.code.gson:gson:2.8.2'
