@@ -51,4 +51,11 @@ dependencies {
 
     // Add to favourites button
     compile 'com.github.ivbaranov:materialfavoritebutton:0.1.4'
+
+    //Recycler view
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+
+    //Preferences
+    compile 'com.android.support:preference-v7:26.1.0'
 }
+

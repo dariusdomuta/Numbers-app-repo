@@ -1,6 +1,4 @@
-package com.darius.numbers.app.RealmDB;
-
-import java.util.Date;
+package com.darius.numbers.app.RealmModels;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

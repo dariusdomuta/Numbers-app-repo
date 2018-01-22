@@ -32,6 +32,10 @@
         </activity>
         <activity android:name=".screens.result.ResultActivity">
         </activity>
+        <activity android:name=".screens.favourites.FavoritesActivity">
+        </activity>
+        <activity android:name=".screens.favourites.Preferences.SettingsActivity" >
+        </activity>
 
         <provider
             android:authorities="com.facebook.app.FacebookContentProvider1499880120130275"

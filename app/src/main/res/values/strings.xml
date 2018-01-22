@@ -21,4 +21,26 @@
     <string name="facebook_app_id">1499880120130275</string>
     <string name="facebook_login_protocol_scheme">fb1499880120130275</string>
     <string name="add_to_favourites">Add to favourites</string>
+    <string name="favorite_facts">Favorite Facts</string>
+    <string name="menu_preferences">Preferences</string>
+
+    //Fact types for preferences
+    <string name="pref_fact_label_numbers">Numbers</string>
+    <string name="pref_fact_label_dates">Dates</string>
+    <string name="pref_fact_label_math">Math</string>
+    <string name="pref_fact_label_years">Years</string>
+
+    <string name="pref_fact_value_dates">date</string>
+    <string name="pref_fact_value_numbers">number</string>
+    <string name="pref_fact_value_math">math</string>
+    <string name="pref_fact_value_years">year</string>
+
+    <string name="pref_sort_label_ascending">Ascending</string>
+    <string name="pref_sort_label_descending">Descending</string>
+
+    <string name="pref_sort_value_ascending">ascending</string>
+    <string name="pref_sort_value_descending">descending</string>
+
+    <string name="pref_fact_key">fact_type</string>
+    <string name="pref_sort_key">sort_type</string>
 </resources>

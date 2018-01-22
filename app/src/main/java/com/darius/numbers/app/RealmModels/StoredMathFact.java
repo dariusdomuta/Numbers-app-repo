@@ -1,4 +1,4 @@
-package com.darius.numbers.app.RealmDB;
+package com.darius.numbers.app.RealmModels;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fact_type">
+        <item>@string/pref_fact_label_numbers</item>
+        <item>@string/pref_fact_label_years</item>
+        <item>@string/pref_fact_label_math</item>
+        <item>@string/pref_fact_label_dates</item>
+    </string-array>
+
+    <string-array name="fact_values">
+        <item>@string/pref_fact_value_numbers</item>
+        <item>@string/pref_fact_value_years</item>
+        <item>@string/pref_fact_value_math</item>
+        <item>@string/pref_fact_value_dates</item>
+    </string-array>
+
+    <string-array name="sort_order">
+        <item>@string/pref_sort_label_ascending</item>
+        <item>@string/pref_sort_label_descending</item>
+    </string-array>
+
+    <string-array name="sort_values">
+        <item>@string/pref_sort_value_ascending</item>
+        <item>@string/pref_sort_value_descending</item>
+    </string-array>
+</resources>

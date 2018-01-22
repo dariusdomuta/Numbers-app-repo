@@ -4,37 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.telecom.Call;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.darius.numbers.R;
-import com.darius.numbers.app.RealmDB.StoredDateFact;
-import com.darius.numbers.app.RealmDB.StoredMathFact;
-import com.darius.numbers.app.RealmDB.StoredNumberFact;
-import com.darius.numbers.app.RealmDB.StoredYearFact;
+import com.darius.numbers.app.RealmModels.StoredDateFact;
+import com.darius.numbers.app.RealmModels.StoredMathFact;
+import com.darius.numbers.app.RealmModels.StoredNumberFact;
+import com.darius.numbers.app.RealmModels.StoredYearFact;
 import com.darius.numbers.app.utils.Constants;
-import com.darius.numbers.screens.main.MainActivity;
-import com.darius.numbers.screens.number.NumberActivity;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
-import com.github.ivbaranov.mfb.MaterialFavoriteButton;
-
-import org.w3c.dom.Text;
-
-import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -82,6 +67,7 @@ public class ResultActivity extends AppCompatActivity {
     public void setsResultInfo(String sResultInfo) {
         this.sResultInfo = sResultInfo;
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="@string/pref_fact_key"
+        android:title="Fact type"
+        android:entries="@array/fact_type"
+        android:entryValues="@array/fact_values"
+        android:defaultValue="@string/pref_fact_value_numbers"
+        android:summary="Choose what type of facts you want to display"
+        />
+
+    <ListPreference
+        android:key="@string/pref_sort_key"
+        android:title="Sorting order"
+        android:entries="@array/sort_order"
+        android:entryValues="@array/sort_values"
+        android:defaultValue="ascending"
+        android:summary="Ascending/Descending"/>
+</PreferenceScreen>

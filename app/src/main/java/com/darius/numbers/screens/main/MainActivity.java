@@ -9,6 +9,7 @@ import com.darius.numbers.R;
 import com.darius.numbers.app.NumbersApp;
 import com.darius.numbers.app.network.NumbersApi;
 import com.darius.numbers.screens.date.DateActivity;
+import com.darius.numbers.screens.favourites.FavoritesActivity;
 import com.darius.numbers.screens.math.MathActivity;
 import com.darius.numbers.screens.number.NumberActivity;
 import com.darius.numbers.screens.year.YearActivity;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.main_bt_math_facts)
     Button btMathFacts;
+
+    @BindView(R.id.main_bt_favorites)
+    Button btFavorites;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.main_bt_math_facts)
     public void onMathFactsClicked() {
         Intent intent = new Intent(this, MathActivity.class);
+        startActivity(intent);
+    }
+    @OnClick(R.id.main_bt_favorites)
+    public void onFavoritesClicked() {
+        Intent intent = new Intent(this, FavoritesActivity.class);
         startActivity(intent);
     }
 
