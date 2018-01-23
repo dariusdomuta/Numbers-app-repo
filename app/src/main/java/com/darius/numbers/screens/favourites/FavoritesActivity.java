@@ -32,6 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 import timber.log.Timber;
 
 /**
@@ -169,6 +170,66 @@ public class FavoritesActivity extends AppCompatActivity implements SharedPrefer
             }
         } else if (key.equals(getString(R.string.pref_sort_key))) {
             loadSortTypeFromPreferences(sharedPreferences);
+            if (getDisplayedFactType().equals("number")){
+                try {
+                    if (queryNumbersResults.get(0) != null) {
+                        if (getDisplayedSortOrder().equals("ascending")) {
+                            queryNumbersResults = queryNumbersResults.sort("storedNumber", Sort.ASCENDING);
+                        } else {
+                            queryNumbersResults = queryNumbersResults.sort("storedNumber", Sort.DESCENDING);
+                        }
+                        NumberAdapter numberAdapter = new NumberAdapter(getApplicationContext(), queryNumbersResults);
+                        itemsList.setAdapter(numberAdapter);
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    Toast.makeText(this, "You don't have any favorite number facts", Toast.LENGTH_SHORT).show();
+                }
+
+            } else if(getDisplayedFactType().equals("year")) {
+                try {
+                    if (queryYearsResults.get(0) != null) {
+                        if (getDisplayedSortOrder().equals("ascending")) {
+                            queryYearsResults = queryYearsResults.sort("storedYear", Sort.ASCENDING);
+                        } else {
+                            queryYearsResults = queryYearsResults.sort("storedYear", Sort.DESCENDING);
+                        }
+                        YearAdapter yearAdapter = new YearAdapter(getApplicationContext(), queryYearsResults);
+                        itemsList.setAdapter(yearAdapter);
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    Toast.makeText(this, "You don't have any favorite year facts", Toast.LENGTH_SHORT).show();
+                }
+
+            } else if (getDisplayedFactType().equals("math")) {
+                try {
+                    if (queryMathResults.get(0) != null) {
+                        if (getDisplayedSortOrder().equals("ascending")) {
+                            queryMathResults = queryMathResults.sort("storedMath", Sort.ASCENDING);
+                        } else {
+                            queryMathResults = queryMathResults.sort("storedMath", Sort.DESCENDING);
+                        }
+                        MathAdapter mathAdapter = new MathAdapter(getApplicationContext(), queryMathResults);
+                        itemsList.setAdapter(mathAdapter);
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    Toast.makeText(this, "You don't have any favorite math facts", Toast.LENGTH_SHORT).show();
+                }
+            } else if (getDisplayedFactType().equals("date")) {
+                try {
+                    if (queryDateResults.get(0) != null) {
+                        if (getDisplayedSortOrder().equals("ascending")) {
+                            queryDateResults = queryDateResults.sort("storedDate", Sort.ASCENDING);
+                        } else {
+                            queryDateResults = queryDateResults.sort("storedDate", Sort.DESCENDING);
+                        }
+                        DateAdapter dateAdapter = new DateAdapter(getApplicationContext(), queryDateResults);
+                        itemsList.setAdapter(dateAdapter);
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    Toast.makeText(this, "You don't have any favorite date facts", Toast.LENGTH_SHORT).show();
+                }
+
+            }
         }
     }
 
