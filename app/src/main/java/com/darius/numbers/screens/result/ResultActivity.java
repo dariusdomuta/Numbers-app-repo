@@ -11,10 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.darius.numbers.R;
-import com.darius.numbers.app.RealmModels.StoredDateFact;
-import com.darius.numbers.app.RealmModels.StoredMathFact;
-import com.darius.numbers.app.RealmModels.StoredNumberFact;
-import com.darius.numbers.app.RealmModels.StoredYearFact;
+import com.darius.numbers.app.RealmModels.DateModel;
+import com.darius.numbers.app.RealmModels.MathModel;
+import com.darius.numbers.app.RealmModels.NumberModel;
+import com.darius.numbers.app.RealmModels.YearModel;
 import com.darius.numbers.app.utils.Constants;
 import com.facebook.CallbackManager;
 import com.facebook.share.model.ShareLinkContent;
@@ -142,7 +142,7 @@ public class ResultActivity extends AppCompatActivity {
                     case "date":
                         try {
                             sResultNumber = sResultNumber.replace(" ","");
-                            StoredDateFact date = realm.createObject(StoredDateFact.class, sResultNumber);
+                            DateModel date = realm.createObject(DateModel.class, sResultNumber);
                             date.setStoredDate(Integer.parseInt(sResultNumber));
                             date.setStoredDateFact(sResultInfo);
                             Toast.makeText(getApplicationContext(), "Fact added to favourites", Toast.LENGTH_SHORT).show();
@@ -153,7 +153,7 @@ public class ResultActivity extends AppCompatActivity {
 
                     case "math":
                         try {
-                            final StoredMathFact math = realm.createObject(StoredMathFact.class, sResultNumber);
+                            final MathModel math = realm.createObject(MathModel.class, sResultNumber);
                             math.setStoredMath(Integer.parseInt(sResultNumber));
                             math.setStoredMathFact(sResultInfo);
                             Toast.makeText(getApplicationContext(), "Fact added to favourites", Toast.LENGTH_SHORT).show();
@@ -164,7 +164,7 @@ public class ResultActivity extends AppCompatActivity {
 
                     case "trivia":
                         try {
-                            final StoredNumberFact number = realm.createObject(StoredNumberFact.class, sResultNumber);
+                            final NumberModel number = realm.createObject(NumberModel.class, sResultNumber);
                             number.setStoredNumber(Integer.parseInt(sResultNumber));
                             number.setStoredNumberFact(sResultInfo);
                             Toast.makeText(getApplicationContext(), "Fact added to favourites", Toast.LENGTH_SHORT).show();
@@ -176,7 +176,7 @@ public class ResultActivity extends AppCompatActivity {
 
                     case "year":
                         try{
-                            StoredYearFact year = realm.createObject(StoredYearFact.class, sResultNumber);
+                            YearModel year = realm.createObject(YearModel.class, sResultNumber);
                             year.setStoredYear(Integer.parseInt(sResultNumber));
                             year.setStoredYearFact(sResultInfo);
                             Toast.makeText(getApplicationContext(), "Fact added to favourites", Toast.LENGTH_SHORT).show();
@@ -186,9 +186,9 @@ public class ResultActivity extends AppCompatActivity {
 
                 }
                 realm.commitTransaction();
-                RealmQuery<StoredNumberFact> query = realm.where(StoredNumberFact.class);
-                RealmResults<StoredNumberFact> result = query.findAll();
-                for (StoredNumberFact iterator : result) {
+                RealmQuery<NumberModel> query = realm.where(NumberModel.class);
+                RealmResults<NumberModel> result = query.findAll();
+                for (NumberModel iterator : result) {
                     Timber.d("number fact: "+ iterator.getStoredNumberFact() + iterator.getStoredNumber());
                 }
 

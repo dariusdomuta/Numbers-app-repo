@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,23 +16,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.darius.numbers.R;
-import com.darius.numbers.app.RealmModels.StoredDateFact;
-import com.darius.numbers.app.RealmModels.StoredMathFact;
-import com.darius.numbers.app.RealmModels.StoredNumberFact;
-import com.darius.numbers.app.RealmModels.StoredYearFact;
+import com.darius.numbers.app.RealmModels.DateModel;
+import com.darius.numbers.app.RealmModels.MathModel;
+import com.darius.numbers.app.RealmModels.NumberModel;
+import com.darius.numbers.app.RealmModels.YearModel;
 import com.darius.numbers.app.adapters.DateAdapter;
 import com.darius.numbers.app.adapters.MathAdapter;
 import com.darius.numbers.app.adapters.NumberAdapter;
 import com.darius.numbers.app.adapters.YearAdapter;
 import com.darius.numbers.screens.favourites.Preferences.SettingsActivity;
-import com.darius.numbers.screens.number.NumberActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
-import timber.log.Timber;
 
 /**
  * Created by dariu on 1/22/2018.
@@ -46,10 +43,10 @@ public class FavoritesActivity extends AppCompatActivity implements SharedPrefer
     private String displayedFactType;
     private String displayedSortOrder;
 
-    RealmResults<StoredNumberFact> queryNumbersResults;
-    RealmResults<StoredYearFact> queryYearsResults;
-    RealmResults<StoredMathFact> queryMathResults;
-    RealmResults<StoredDateFact> queryDateResults;
+    RealmResults<NumberModel> queryNumbersResults;
+    RealmResults<YearModel> queryYearsResults;
+    RealmResults<MathModel> queryMathResults;
+    RealmResults<DateModel> queryDateResults;
 
     public String getDisplayedFactType() {
         return displayedFactType;
@@ -86,10 +83,10 @@ public class FavoritesActivity extends AppCompatActivity implements SharedPrefer
 
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
-        queryNumbersResults = realm.where(StoredNumberFact.class).findAllAsync();
-        queryYearsResults = realm.where(StoredYearFact.class).findAllAsync();
-        queryMathResults = realm.where(StoredMathFact.class).findAllAsync();
-        queryDateResults = realm.where(StoredDateFact.class).findAllAsync();
+        queryNumbersResults = realm.where(NumberModel.class).findAllAsync();
+        queryYearsResults = realm.where(YearModel.class).findAllAsync();
+        queryMathResults = realm.where(MathModel.class).findAllAsync();
+        queryDateResults = realm.where(DateModel.class).findAllAsync();
         realm.commitTransaction();
 
         loadingIndicator.setVisibility(View.GONE);

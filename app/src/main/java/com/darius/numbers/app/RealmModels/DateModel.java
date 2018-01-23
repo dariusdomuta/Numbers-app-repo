@@ -7,7 +7,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by dariu on 1/21/2018.
  */
 
-public class StoredDateFact extends RealmObject{
+public class DateModel extends RealmObject{
 
     @PrimaryKey
     public int uId;

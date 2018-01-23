@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.darius.numbers.R;
-import com.darius.numbers.app.RealmModels.StoredMathFact;
+import com.darius.numbers.app.RealmModels.MathModel;
 
 import io.realm.RealmResults;
 import timber.log.Timber;
@@ -19,10 +19,10 @@ import timber.log.Timber;
 
 public class MathAdapter extends RecyclerView.Adapter<MathAdapter.ItemViewHolder>{
 
-    private RealmResults<StoredMathFact> queryResults;
+    private RealmResults<MathModel> queryResults;
     private Context context;
 
-    public RealmResults<StoredMathFact> getQueryResults() {
+    public RealmResults<MathModel> getQueryResults() {
         return queryResults;
     }
 
@@ -39,7 +39,7 @@ public class MathAdapter extends RecyclerView.Adapter<MathAdapter.ItemViewHolder
         }
     }
 
-    public MathAdapter(Context context, RealmResults<StoredMathFact> queryResults){
+    public MathAdapter(Context context, RealmResults<MathModel> queryResults){
         this.context = context;
         this.queryResults = queryResults;
     }
@@ -64,7 +64,7 @@ public class MathAdapter extends RecyclerView.Adapter<MathAdapter.ItemViewHolder
 
     @Override
     public void onBindViewHolder(MathAdapter.ItemViewHolder holder, int position) {
-        StoredMathFact currentResult = queryResults.get(position);
+        MathModel currentResult = queryResults.get(position);
         Timber.d("bind" + currentResult.getStoredMathFact());
         Timber.d("position " + position );
         String numberToString = Integer.toString(currentResult.getStoredMath());

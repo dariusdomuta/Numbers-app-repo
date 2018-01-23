@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.darius.numbers.R;
-import com.darius.numbers.app.RealmModels.StoredDateFact;
-import com.darius.numbers.app.RealmModels.StoredNumberFact;
+import com.darius.numbers.app.RealmModels.DateModel;
 
 import io.realm.RealmResults;
 import timber.log.Timber;
@@ -19,10 +18,10 @@ import timber.log.Timber;
  */
 
 public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemViewHolder>{
-    private RealmResults<StoredDateFact> queryResults;
+    private RealmResults<DateModel> queryResults;
     private Context context;
 
-    public RealmResults<StoredDateFact> getQueryResults() {
+    public RealmResults<DateModel> getQueryResults() {
         return queryResults;
     }
 
@@ -39,7 +38,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemViewHolder
         }
     }
 
-    public DateAdapter(Context context, RealmResults<StoredDateFact> queryResults){
+    public DateAdapter(Context context, RealmResults<DateModel> queryResults){
         this.context = context;
         this.queryResults = queryResults;
     }
@@ -64,7 +63,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemViewHolder
 
     @Override
     public void onBindViewHolder(DateAdapter.ItemViewHolder holder, int position) {
-        StoredDateFact currentResult = queryResults.get(position);
+        DateModel currentResult = queryResults.get(position);
         Timber.d("bind" + currentResult.getStoredDateFact());
         Timber.d("position " + position );
 

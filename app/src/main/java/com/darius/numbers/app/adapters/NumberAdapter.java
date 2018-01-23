@@ -2,17 +2,13 @@ package com.darius.numbers.app.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.darius.numbers.R;
-import com.darius.numbers.app.RealmModels.StoredDateFact;
-import com.darius.numbers.app.RealmModels.StoredNumberFact;
-import com.darius.numbers.screens.number.NumberActivity;
-import com.darius.numbers.screens.result.ResultActivity;
+import com.darius.numbers.app.RealmModels.NumberModel;
 
 import io.realm.RealmResults;
 import timber.log.Timber;
@@ -23,10 +19,10 @@ import timber.log.Timber;
 
 public class NumberAdapter extends RecyclerView.Adapter<NumberAdapter.ItemViewHolder> {
 
-    private RealmResults<StoredNumberFact> queryResults;
+    private RealmResults<NumberModel> queryResults;
     private Context context;
 
-    public RealmResults<StoredNumberFact> getQueryResults() {
+    public RealmResults<NumberModel> getQueryResults() {
         return queryResults;
     }
 
@@ -43,7 +39,7 @@ public class NumberAdapter extends RecyclerView.Adapter<NumberAdapter.ItemViewHo
         }
     }
 
-    public NumberAdapter(Context context, RealmResults<StoredNumberFact> queryResults){
+    public NumberAdapter(Context context, RealmResults<NumberModel> queryResults){
         this.context = context;
         this.queryResults = queryResults;
     }
@@ -68,7 +64,7 @@ public class NumberAdapter extends RecyclerView.Adapter<NumberAdapter.ItemViewHo
 
     @Override
     public void onBindViewHolder(NumberAdapter.ItemViewHolder holder, int position) {
-        StoredNumberFact currentResult = queryResults.get(position);
+        NumberModel currentResult = queryResults.get(position);
         Timber.d("bind" + currentResult.getStoredNumberFact());
         Timber.d("position " + position );
         String numberToString = Integer.toString(currentResult.getStoredNumber());

@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.darius.numbers.R;
-import com.darius.numbers.app.RealmModels.StoredNumberFact;
-import com.darius.numbers.app.RealmModels.StoredYearFact;
+import com.darius.numbers.app.RealmModels.YearModel;
 
 import io.realm.RealmResults;
 import timber.log.Timber;
@@ -19,10 +18,10 @@ import timber.log.Timber;
  */
 
 public class YearAdapter extends RecyclerView.Adapter<YearAdapter.ItemViewHolder>{
-    private RealmResults<StoredYearFact> queryResults;
+    private RealmResults<YearModel> queryResults;
     private Context context;
 
-    public RealmResults<StoredYearFact> getQueryResults() {
+    public RealmResults<YearModel> getQueryResults() {
         return queryResults;
     }
 
@@ -39,7 +38,7 @@ public class YearAdapter extends RecyclerView.Adapter<YearAdapter.ItemViewHolder
         }
     }
 
-    public YearAdapter(Context context, RealmResults<StoredYearFact> queryResults){
+    public YearAdapter(Context context, RealmResults<YearModel> queryResults){
         this.context = context;
         this.queryResults = queryResults;
     }
@@ -64,7 +63,7 @@ public class YearAdapter extends RecyclerView.Adapter<YearAdapter.ItemViewHolder
 
     @Override
     public void onBindViewHolder(YearAdapter.ItemViewHolder holder, int position) {
-        StoredYearFact currentResult = queryResults.get(position);
+        YearModel currentResult = queryResults.get(position);
         Timber.d("bind" + currentResult.getStoredYearFact());
         Timber.d("position " + position );
         String numberToString = Integer.toString(currentResult.getStoredYear());
