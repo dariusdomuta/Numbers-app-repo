@@ -67,7 +67,21 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemViewHolder
         StoredDateFact currentResult = queryResults.get(position);
         Timber.d("bind" + currentResult.getStoredDateFact());
         Timber.d("position " + position );
-        String numberToString = Integer.toString(currentResult.getStoredDate());
+
+        int currentDate = currentResult.getStoredDate();
+        String numberToString = "";
+        if (currentDate < 1000) {
+           numberToString = "0" + Integer.toString(currentResult.getStoredDate());
+        } else {
+            numberToString = Integer.toString(currentResult.getStoredDate());
+        }
+        try {
+            numberToString = numberToString.substring(0,2) + " " + numberToString.substring(2,4);
+        } catch (StringIndexOutOfBoundsException e) {
+
+        }
+
+        Timber.d("date is " + numberToString);
         holder.tvNumber.setText(numberToString);
         holder.tvFact.setText(currentResult.getStoredDateFact());
     }
