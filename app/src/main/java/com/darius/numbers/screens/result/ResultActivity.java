@@ -129,7 +129,6 @@ public class ResultActivity extends AppCompatActivity {
                 intent.setType("text/plain");
                 intent.putExtra(android.content.Intent.EXTRA_TEXT, getsResultInfo() );
                 startActivity(Intent.createChooser(intent, "Share Via"));
-                Toast.makeText(getApplicationContext(), "You click on menu share", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.menu_add_to_favourites:
